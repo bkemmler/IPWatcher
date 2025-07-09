@@ -4,48 +4,53 @@
 
 from pydantic import BaseModel
 from datetime import datetime
+from typing import List, Optional
 
-class DeviceBase(BaseModel):
-    """
-    The base schema for a device.
-    """
-    ip_address: str
-    mac_address: str | None = None
-    vendor: str | None = None
-    os: str | None = None
-    open_ports: str | None = None
+class DeviceHistoryBase(BaseModel):
+    is_online: bool
+    timestamp: datetime
 
-class DeviceCreate(DeviceBase):
-    """
-    The schema for creating a new device.
-    """
-    pass
-
-class Device(DeviceBase):
-    """
-    The schema for a device that has been retrieved from the database.
-    """
+class DeviceHistory(DeviceHistoryBase):
     id: int
-    first_seen: datetime
-    last_seen: datetime
 
     class Config:
         orm_mode = True
 
+class DeviceBase(BaseModel):
+    ip_address: str
+    mac_address: Optional[str] = None
+    vendor: Optional[str] = None
+    os_details: Optional[str] = None
+    open_ports: Optional[str] = None
+    is_online: bool = False
+    name: Optional[str] = None
+
+class DeviceCreate(DeviceBase):
+    pass
+
+class Device(DeviceBase):
+    id: int
+    first_seen: datetime
+    last_seen: datetime
+    history: List[DeviceHistory] = []
+
+    class Config:
+        orm_mode = True
+
+class DeviceUpdate(BaseModel):
+    name: str
+
 class MQTTSettings(BaseModel):
-    """
-    The schema for the MQTT settings.
-    """
     broker_url: str
     topic: str
-    username: str | None = None
-    password: str | None = None
+    username: Optional[str] = None
+    password: Optional[str] = None
 
 class Config(BaseModel):
-    """
-    The schema for the application configuration.
-    """
     ip_ranges: list[str]
     deep_scan_schedule: str
     ping_sweep_interval: int
     mqtt: MQTTSettings
+
+class Version(BaseModel):
+    version: str

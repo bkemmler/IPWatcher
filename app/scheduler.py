@@ -2,32 +2,23 @@
 # This file contains the scheduling logic for the IP Watcher application.
 
 from apscheduler.schedulers.background import BackgroundScheduler
-from apscheduler.triggers.cron import CronTrigger
 from .config import settings
-from .scanner import ping_sweep, deep_scan
+from .scanner import scan_network
 
 # Create a new background scheduler.
 scheduler = BackgroundScheduler()
 
 def schedule_jobs():
     """
-    Schedule the ping sweep and deep scan jobs.
+    Schedule the network scan job.
     """
-    # Schedule the ping sweep to run at a regular interval.
+    # Schedule the network scan to run at a regular interval.
     scheduler.add_job(
-        ping_sweep,
+        scan_network,
         "interval",
         seconds=settings.ping_sweep_interval,
         args=[settings.ip_ranges],
-        id="ping_sweep",
-        replace_existing=True,
-    )
-    # Schedule the deep scan to run on a cron-style schedule.
-    scheduler.add_job(
-        deep_scan,
-        CronTrigger.from_crontab(settings.deep_scan_schedule),
-        args=[settings.ip_ranges],
-        id="deep_scan",
+        id="network_scan",
         replace_existing=True,
     )
 

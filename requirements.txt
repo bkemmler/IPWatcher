@@ -6,3 +6,6 @@ apscheduler
 python-nmap
 paho-mqtt
 pyyaml
+mac-vendor-lookup
+pytest
+httpx

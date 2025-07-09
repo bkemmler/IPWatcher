@@ -32,7 +32,7 @@ def shutdown_event():
 app.include_router(api_router, prefix="/api")
 
 # Mount the static files directory, which contains the frontend.
-app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
+app.mount("/", StaticFiles(directory="app/frontend/build", html=True), name="static")
 
 @app.get("/healthz")
 def healthz():
