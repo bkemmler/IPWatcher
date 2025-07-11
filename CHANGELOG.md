@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2025-07-11
+
+### Added
+
+- **Settings Page**: A new settings page has been added to the web interface, allowing users to configure the application's parameters, such as IP ranges, scan schedules, and more.
+- **Health Check Endpoint**: A `/api/health` endpoint has been added to the API to allow for container orchestration tools to monitor the application's health.
+
+### Changed
+
+- **Dockerfile Optimization**: The Dockerfile has been optimized for smaller image size and better caching.
+- **Version Update**: The application version has been updated to 3.0.0.
+
 ## [2.0.0] - 2025-07-09
 
 This is a major release that includes a complete overhaul of the application, introducing a modern web interface, enhanced scanning capabilities, and a more robust backend.

@@ -15,7 +15,14 @@ def read_version():
     """
     Retrieve the application version.
     """
-    return {"version": "2.0.0"}
+    return {"version": "3.0.0"}
+
+@api_router.get("/health")
+def health_check():
+    """
+    Health check endpoint.
+    """
+    return {"status": "ok"}
 
 @api_router.get("/devices", response_model=list[schemas.Device])
 def read_devices(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):

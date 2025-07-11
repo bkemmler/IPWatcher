@@ -1,10 +1,29 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import Papa from 'papaparse';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Settings from './Settings';
 
 function App() {
+  return (
+    <Router>
+      <div className="container-fluid mt-5">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h1><Link to="/">IP Watcher</Link></h1>
+          <Link to="/settings" className="btn btn-secondary">Settings</Link>
+        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+function Home() {
   const [devices, setDevices] = useState([]);
   const [version, setVersion] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -72,7 +91,7 @@ function App() {
         if (a[sortConfig.key] < b[sortConfig.key]) {
           return sortConfig.direction === 'ascending' ? -1 : 1;
         }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
+        if (a[sortConfig.key] > b[sort_config.key]) {
           return sortConfig.direction === 'ascending' ? 1 : -1;
         }
         return 0;
@@ -110,9 +129,8 @@ function App() {
   };
 
   return (
-    <div className="container-fluid mt-5">
+    <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1>IP Watcher</h1>
         <span className="badge bg-secondary">v{version}</span>
       </div>
 
