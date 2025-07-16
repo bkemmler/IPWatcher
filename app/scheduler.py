@@ -2,8 +2,8 @@
 # This file contains the scheduling logic for the IP Watcher application.
 
 from apscheduler.schedulers.background import BackgroundScheduler
-from config import settings
-from scanner import scan_network
+from .config import settings
+from .scanner import scan_network
 
 # Create a new background scheduler.
 scheduler = BackgroundScheduler()
