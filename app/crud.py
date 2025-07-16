@@ -3,8 +3,9 @@
 
 from sqlalchemy.orm import Session
 import yaml
-from . import models, schemas
-from .config import settings
+from models import Device, DeviceHistory
+from schemas import DeviceCreate, DeviceBase, Config
+from config import settings
 from datetime import datetime
 
 def get_device(db: Session, device_id: int):

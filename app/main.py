@@ -3,9 +3,9 @@
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from .api import api_router
-from .database import create_db_and_tables
-from .scheduler import scheduler
+from api import api_router
+from database import create_db_and_tables
+from scheduler import scheduler
 
 # Create a FastAPI application instance.
 app = FastAPI()

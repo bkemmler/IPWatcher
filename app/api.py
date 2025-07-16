@@ -3,9 +3,11 @@
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from . import crud, schemas, scanner
-from .database import get_db
-from .config import settings
+from crud import get_config, update_config
+from schemas import Config, Version, Device, DeviceUpdate
+from scanner import scan_network
+from database import get_db
+from config import settings
 
 # Create a new API router.
 api_router = APIRouter()
