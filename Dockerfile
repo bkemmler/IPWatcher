@@ -10,7 +10,7 @@ COPY app/frontend/ ./
 RUN npm run build
 
 # Stage 2: Build the Python backend
-FROM python:3.11.2-slim-buster
+FROM python:3.11-slim-bookworm
 
 WORKDIR /app
 

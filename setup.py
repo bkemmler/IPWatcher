@@ -8,7 +8,7 @@ with open("requirements.txt", "r") as f:
 
 setup(
     name="ip-watcher",
-    version="0.1.0",
+    version="3.0.1",
     author="Your Name",
     author_email="your.email@example.com",
     description="IP Watcher is a simple web application that periodically scans your network for connected devices and displays them in a web interface.",
